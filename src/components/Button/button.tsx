@@ -18,19 +18,25 @@ interface BaseButtonProps {
     children?: React.ReactNode,
     href?: string
 }
-const Button: React.FC<BaseButtonProps> = (props) => {
-    const {className, disabled, size, btnType, children, href} = props;
-    const classes =classnames('btn',{
+// 结合原生button 和 a 标签 上的属性
+type  NativeButtonProps = BaseButtonProps & React.ButtonHTMLAttributes<HTMLElement>
+type  AnchorButtonProps = BaseButtonProps & React.AnchorHTMLAttributes<HTMLElement>
+//  有些属性a标签上独有 有些是button上独有所以使用typescript上的Partial 使属性为可选
+export type ButtonProps = Partial<NativeButtonProps & AnchorButtonProps>
+
+const Button: React.FC<ButtonProps> = (props) => {
+    const {className, disabled, size, btnType, children, href,...restProps} = props;
+    const classes =classnames('btn',className,{
         [`btn-${btnType}`]: btnType,
         [`btn-${size}`]: size,
         'disabled':(btnType === ButtonType.Link) && disabled
     })
-    console.log(classes)
     if(btnType===ButtonType.Link && href){
         return (
             <a 
                 className={classes}
                 href={href}
+                {...restProps}
             >
                 {children}
             </a>
@@ -40,6 +46,7 @@ const Button: React.FC<BaseButtonProps> = (props) => {
             <button
                 className={classes}
                 disabled = {disabled}
+                {...restProps}
             >
                 {children}
             </button>
