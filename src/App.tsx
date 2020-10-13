@@ -7,9 +7,9 @@ function App() {
     <div className="App">
       <header className="App-header">
         <Menu defaultIndex={0} onSelect={(index)=>{alert(index)}} mode={'vertical'}>
-          <MenuItem index={0}>hello world0</MenuItem>
-          <MenuItem index={1} disabled>hello world1</MenuItem>
-          <MenuItem index={2}>hello world2</MenuItem>
+          <MenuItem >hello world0</MenuItem>
+          <MenuItem  disabled>hello world1</MenuItem>
+          <MenuItem >hello world2</MenuItem>
         </Menu>
         <Button btnType={ButtonType.Primary} size={ButtonSize.Large} disabled>按钮</Button>
         <Button btnType={ButtonType.Primary} size={ButtonSize.Large} >按钮</Button>
