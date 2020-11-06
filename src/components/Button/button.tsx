@@ -1,3 +1,12 @@
+/*
+ * @Descripttion: 
+ * @version: v-1
+ * @Author: lovecode
+ * @Date: 2020-10-06 13:57:36
+ * @LastEditors: lovecode
+ * @LastEditTime: 2020-11-05 21:26:35
+ */
+
 import React from 'react';
 import classnames from 'classnames';
 export enum ButtonSize {
@@ -44,7 +53,7 @@ const Button: React.FC<ButtonProps> = (props) => {
     }else{
         return(
             <button
-                className={classes}
+                className = {classes}
                 disabled = {disabled}
                 {...restProps}
             >

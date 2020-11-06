@@ -2,14 +2,20 @@ import React from 'react';
 import Button,{ButtonSize,ButtonType} from './components/Button/button'
 import Menu from './components/Menu/menu'
 import MenuItem from './components/Menu/menuItem'
+import SubMenu from './components/Menu/subMenu'
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <Menu defaultIndex={0} onSelect={(index)=>{alert(index)}} mode={'vertical'}>
+        <Menu defaultIndex={'0'} onSelect={(index)=>{alert(index)}} mode={'vertical'} defaultOpenSubmenus={['3']} >
           <MenuItem >hello world0</MenuItem>
           <MenuItem  disabled>hello world1</MenuItem>
           <MenuItem >hello world2</MenuItem>
+          <SubMenu title="drapdown" >
+            <MenuItem >hello world3</MenuItem>
+            <MenuItem >hello world4</MenuItem>
+            <MenuItem >hello world5</MenuItem>
+          </SubMenu>
         </Menu>
         <Button btnType={ButtonType.Primary} size={ButtonSize.Large} disabled>按钮</Button>
         <Button btnType={ButtonType.Primary} size={ButtonSize.Large} >按钮</Button>
