@@ -1,12 +1,17 @@
 import React from 'react';
 import Button,{ButtonSize,ButtonType} from './components/Button/button'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { fas } from '@fortawesome/free-solid-svg-icons'
 import Menu from './components/Menu/menu'
 import MenuItem from './components/Menu/menuItem'
 import SubMenu from './components/Menu/subMenu'
+import Icon from './components/Icon/icon'
+library.add(fas)
 function App() {
   return (
     <div className="App">
       <header className="App-header">
+        <Icon icon={'arrow-down'} theme='danger' size="10x"/>
         <Menu defaultIndex={'0'} onSelect={(index)=>{alert(index)}} mode={'vertical'} defaultOpenSubmenus={['3']} >
           <MenuItem >hello world0</MenuItem>
           <MenuItem  disabled>hello world1</MenuItem>
