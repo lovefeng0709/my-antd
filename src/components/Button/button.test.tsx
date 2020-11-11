@@ -1,14 +1,14 @@
 
 import React from 'react';
 import {render, fireEvent} from '@testing-library/react'
-import Button,{ButtonSize,ButtonType,ButtonProps} from './button';
+import Button,{ButtonProps} from './button';
 // 
 const defaultProps = {
     onClick:jest.fn()
 }
 const testProps:ButtonProps = {
-    btnType:ButtonType.Primary,
-    size:ButtonSize.Large,
+    btnType:'primary',
+    size:'lg',
     className:'kclass'
 }
 const disabledProps:ButtonProps = {
@@ -34,7 +34,7 @@ describe('test Button component',()=>{
         expect(element).toHaveClass('btn-primary btn-lg kclass');
     })
     it('should render a link when btnType equals link and href is provided',()=>{
-        const { getByText} = render(<Button btnType={ButtonType.Link} href="https://www.baidu.com">link</ Button>)
+        const { getByText} = render(<Button btnType={'link'} href="https://www.baidu.com">link</ Button>)
         const element =getByText('link')
         expect(element).toBeInTheDocument()
         expect(element.tagName).toEqual('A')
