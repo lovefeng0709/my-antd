@@ -6,12 +6,13 @@ import Menu from './components/Menu/menu'
 import MenuItem from './components/Menu/menuItem'
 import SubMenu from './components/Menu/subMenu'
 import Transition from './components/Transition/transition'
+import {Input }from './components/Input/input'
 library.add(fas)
 const App: React.FC=()=>{
   const [show,setShow] = useState(false)
   return (
     <div className="App">
-      <header className="App-header">
+     
         <Menu defaultIndex={'0'} onSelect={(index)=>{alert(index)}}  defaultOpenSubmenus={['3']} >
           <MenuItem >hello world0</MenuItem>
           <MenuItem  disabled>hello world1</MenuItem>
@@ -53,7 +54,8 @@ const App: React.FC=()=>{
        >
          <Button btnType={'primary'}>btn</Button>
        </Transition>
-      </header>
+       <Input size='sm' defaultValue='234'></Input>
+       <Input icon='search'></Input>
     </div>
   );
 }

@@ -4,11 +4,12 @@
  * @Author: love-coding
  * @Date: 2020-11-08 19:40:29
  * @LastEditors: love-coding
- * @LastEditTime: 2020-11-11 23:25:16
+ * @LastEditTime: 2020-11-12 23:10:26
  */
 // 导入样式
 import '../src/styles/index.scss';
 import React from 'react';
+
 import { addDecorator,addParameters } from '@storybook/react';
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
@@ -29,5 +30,6 @@ addDecorator(withInfo)
 addParameters({info: {
   inline: true,
   header:false
-}})
+}
+})
 
