@@ -7,6 +7,7 @@ import MenuItem from './components/Menu/menuItem'
 import SubMenu from './components/Menu/subMenu'
 import Transition from './components/Transition/transition'
 import {Input }from './components/Input/input'
+import Icon from './components/Icon/icon';
 library.add(fas)
 const App: React.FC=()=>{
   const [show,setShow] = useState(false)
@@ -56,6 +57,7 @@ const App: React.FC=()=>{
        </Transition>
        <Input size='sm' defaultValue='234'></Input>
        <Input icon='search'></Input>
+       <Icon icon="spinner" spin />
     </div>
   );
 }
