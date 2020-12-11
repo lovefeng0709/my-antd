@@ -13,21 +13,21 @@ interface apiGithubUserProps {
 }
 
 const SimpleComplete = () =>{
-    const lakers = ['bradley','pope','caruso','cook','cousins','james','AD','green','howard','kuzma','McGee','rando']
-    const lakersWithNumber = [
-        {value:'bradley',number:11},
-        {value:'pope',number:1},
-        {value:'caruso',number:10},
-        {value:'cook',number:12},
-        {value:'cousins',number:14},
-        {value:'james',number:23},
-        {value:'AD',number:3},
-        {value:'green',number:11},
-        {value:'howard',number:9},
-        {value:'kuzma',number:13},
-        {value:'McGeeley',number:2},
-        {value:'rando',number:44},
-    ]
+    // const lakers = ['bradley','pope','caruso','cook','cousins','james','AD','green','howard','kuzma','McGee','rando']
+    // const lakersWithNumber = [
+    //     {value:'bradley',number:11},
+    //     {value:'pope',number:1},
+    //     {value:'caruso',number:10},
+    //     {value:'cook',number:12},
+    //     {value:'cousins',number:14},
+    //     {value:'james',number:23},
+    //     {value:'AD',number:3},
+    //     {value:'green',number:11},
+    //     {value:'howard',number:9},
+    //     {value:'kuzma',number:13},
+    //     {value:'McGeeley',number:2},
+    //     {value:'rando',number:44},
+    // ]
     // 异步请求
     const handleFetch = (query:string)=>{
         return fetch(`https://api.github.com/search/users?q=${query}`)
