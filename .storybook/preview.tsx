@@ -4,12 +4,14 @@
  * @Author: love-coding
  * @Date: 2020-11-08 19:40:29
  * @LastEditors: love-coding
- * @LastEditTime: 2020-11-12 23:10:26
+ * @LastEditTime: 2020-12-13 20:15:45
  */
 // 导入样式
 import '../src/styles/index.scss';
 import React from 'react';
-
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { fas } from '@fortawesome/free-solid-svg-icons'
+library.add(fas)
 import { addDecorator,addParameters } from '@storybook/react';
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },

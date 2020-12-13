@@ -5,4 +5,4 @@ interface UploadListProps {
     onRemove: (_file: UploadFile) => void;
 }
 export declare const UploadList: FC<UploadListProps>;
-export {};
+export default UploadList;

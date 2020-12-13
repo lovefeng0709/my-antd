@@ -1,7 +1,22 @@
 {
-  "name": "my-antd",
+  "name": "antd-imitation",
   "version": "0.1.0",
-  "private": true,
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "private": false,
+  "description":"React Components Library",
+  "author":"loveqdm",
+  "license":"MIT",
+  "keywords":["Component","UI","React"],
+  "homepage": "https://github.com/lovefeng0709/my-antd",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lovefeng0709/my-antd"
+  },
+  "files": [
+    "dist"
+  ],
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.32",
     "@fortawesome/free-solid-svg-icons": "^5.15.1",
@@ -14,12 +29,15 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "clean": "rimraf ./dist",
-    "build-ts": "npm run clean && tsc -p tsconfig.build.json",
-    "test": "react-scripts test",
+    "build": "npm run clean && npm run build-ts && npm run build-css",
+    "build-ts": "tsc -p tsconfig.build.json",
+    "build-css": "node-sass ./src/styles/index.scss ./dist/index.css",
+    "test": "react-scripts test --env=jest-environment-jsdom-sixteen",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 6006 -s public --no-dll",
     "build-storybook": "build-storybook -s public --no-dll",
-    "storybook-docs": "start-storybook --docs"
+    "storybook-docs": "start-storybook --docs",
+    "prepublish":"npm run build"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -60,6 +78,7 @@
     "@types/storybook__addon-info": "^5.2.3",
     "babel-loader": "8.1.0",
     "css-loader": "^5.0.1",
+    "jest-environment-jsdom-sixteen": "^1.0.3",
     "node-sass": "^4.14.1",
     "react": "^16.13.1",
     "react-docgen-typescript-loader": "^3.7.2",

@@ -20,20 +20,12 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-/*
- * @Descripttion: antd icon demo
- * @version: my-antd-v1.0
- * @Author: love-coding
- * @Date: 2020-11-07 22:35:21
- * @LastEditors: love-coding
- * @LastEditTime: 2020-11-07 22:58:25
- */
 import React from 'react';
 import classNames from 'classnames';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 var Icon = function (props) {
     var _a;
-    // icon-primary  
+    // icon-primary
     var className = props.className, theme = props.theme, restProps = __rest(props, ["className", "theme"]);
     var classes = classNames('viking-icon', className, (_a = {},
         _a["icon-" + theme] = theme,

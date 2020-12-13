@@ -18,10 +18,10 @@ var __spreadArrays = (this && this.__spreadArrays) || function () {
 };
 import React, { useRef, useState } from 'react';
 import axios from 'axios';
-import Button from '../Button/button';
-import { UploadList } from './uploadList';
+import UploadList from './uploadList';
+import Dragger from './dragger';
 export var Upload = function (props) {
-    var action = props.action, defaultFileList = props.defaultFileList, beforeUpload = props.beforeUpload, onProgress = props.onProgress, onSuccess = props.onSuccess, onError = props.onError, onChange = props.onChange, onRemove = props.onRemove;
+    var action = props.action, defaultFileList = props.defaultFileList, beforeUpload = props.beforeUpload, onProgress = props.onProgress, onSuccess = props.onSuccess, onError = props.onError, onChange = props.onChange, onRemove = props.onRemove, name = props.name, headers = props.headers, data = props.data, withCredentials = props.withCredentials, accept = props.accept, multiple = props.multiple, children = props.children, drag = props.drag;
     var fileInput = useRef(null);
     var _a = useState(defaultFileList || []), fileList = _a[0], setFileList = _a[1];
     var updateFileList = function (updateFile, updateObj) {
@@ -37,17 +37,26 @@ export var Upload = function (props) {
         });
     };
     var handleClick = function () {
-        fileInput.current && fileInput.current.click();
+        if (fileInput.current) {
+            fileInput.current.click();
+        }
     };
     var handleFileChange = function (e) {
-        //   e.persist()
         var files = e.target.files;
-        console.log(files);
-        if (!files)
+        if (!files) {
             return;
+        }
         uploadFiles(files);
         if (fileInput.current) {
             fileInput.current.value = '';
+        }
+    };
+    var handleRemove = function (file) {
+        setFileList(function (prevList) {
+            return prevList.filter(function (item) { return item.uid !== file.uid; });
+        });
+        if (onRemove) {
+            onRemove(file);
         }
     };
     var uploadFiles = function (files) {
@@ -71,25 +80,28 @@ export var Upload = function (props) {
     };
     var post = function (file) {
         var _file = {
-            uid: Date.now(),
+            uid: Date.now() + 'upload-file',
             status: 'ready',
             name: file.name,
             size: file.size,
             percent: 0,
             raw: file
         };
-        // setFileList([_file,...fileList])
+        //setFileList([_file, ...fileList])
         setFileList(function (prevList) {
             return __spreadArrays([_file], prevList);
         });
         var formData = new FormData();
-        formData.append(file.name, file);
+        formData.append(name || 'file', file);
+        if (data) {
+            Object.keys(data).forEach(function (key) {
+                formData.append(key, data[key]);
+            });
+        }
         axios.post(action, formData, {
-            headers: {
-                "Content-type": "multipart/form-data"
-            },
+            headers: __assign(__assign({}, headers), { 'Content-Type': 'multipart/form-data' }),
+            withCredentials: withCredentials,
             onUploadProgress: function (e) {
-                console.log(e);
                 var percentage = Math.round((e.loaded * 100) / e.total) || 0;
                 if (percentage < 100) {
                     updateFileList(_file, { percent: percentage, status: 'uploading' });
@@ -98,27 +110,33 @@ export var Upload = function (props) {
                     }
                 }
             }
-        }).then(function (res) {
-            updateFileList(_file, { status: 'success', response: res.data });
+        }).then(function (resp) {
+            updateFileList(_file, { status: 'success', response: resp.data });
             if (onSuccess) {
-                onSuccess(res.data, file);
+                onSuccess(resp.data, file);
             }
             if (onChange) {
                 onChange(file);
             }
-        }).catch(function (error) {
-            updateFileList(_file, { status: 'error', error: error });
+        }).catch(function (err) {
+            updateFileList(_file, { status: 'error', error: err });
             if (onError) {
-                onError(error, file);
+                onError(err, file);
             }
             if (onChange) {
                 onChange(file);
             }
         });
     };
-    console.log(fileList);
     return (React.createElement("div", { className: "viking-upload-component" },
-        React.createElement(Button, { btnType: "primary", onClick: handleClick }, "Upload File"),
-        React.createElement("input", { className: "viking-file-input", style: { display: 'none' }, ref: fileInput, onChange: handleFileChange, type: "file" }),
-        React.createElement(UploadList, { fileList: fileList, onRemove: function () { } })));
+        React.createElement("div", { className: "viking-upload-input", style: { display: 'inline-block' }, onClick: handleClick },
+            drag ?
+                React.createElement(Dragger, { onFile: function (files) { uploadFiles(files); } }, children) :
+                children,
+            React.createElement("input", { className: "viking-file-input", style: { display: 'none' }, ref: fileInput, onChange: handleFileChange, type: "file", accept: accept, multiple: multiple })),
+        React.createElement(UploadList, { fileList: fileList, onRemove: handleRemove })));
 };
+Upload.defaultProps = {
+    name: 'file'
+};
+export default Upload;

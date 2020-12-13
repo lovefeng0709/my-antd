@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect } from "react";
 function useClickOutside(ref, handler) {
     useEffect(function () {
         var listener = function (event) {
@@ -8,7 +8,9 @@ function useClickOutside(ref, handler) {
             handler(event);
         };
         document.addEventListener('click', listener);
-        return function () { return document.removeEventListener('click', listener); };
-    });
+        return function () {
+            document.removeEventListener('click', listener);
+        };
+    }, [ref, handler]);
 }
 export default useClickOutside;
