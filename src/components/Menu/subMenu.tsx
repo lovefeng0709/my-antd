@@ -38,7 +38,6 @@ const SubMenu:React.FC<SubMenuProps> = ({index, title, className,children}) => {
         onMouseEnter : (e:React.MouseEvent)=>{handleMouse(e,true)},
         onMouseLeave : (e:React.MouseEvent)=>{handleMouse(e,false)}
     }:{}
-    console.log(hoverEvents)
     const renderChildren = ()=>{
         const subMenuClasses = classNames('viking-submenu',{
             'menu-opened': menuOpen
