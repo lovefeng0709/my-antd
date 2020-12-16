@@ -4,7 +4,7 @@
  * @Author: love-coding
  * @Date: 2020-11-08 19:40:29
  * @LastEditors: love-coding
- * @LastEditTime: 2020-11-12 23:10:06
+ * @LastEditTime: 2020-12-16 21:52:56
  */
 module.exports = {
   "stories": [
@@ -15,6 +15,7 @@ module.exports = {
     "@storybook/addon-links",
     "@storybook/addon-essentials",
     "@storybook/preset-create-react-app",
+    "@storybook/preset-scss",
   ],
   typescript: {
     check: false,
